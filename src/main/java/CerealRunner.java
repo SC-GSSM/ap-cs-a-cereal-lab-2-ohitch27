@@ -9,7 +9,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
-import java.io.FileNotFoundException; 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class CerealRunner
@@ -23,7 +23,20 @@ public class CerealRunner
    */
    public static  ArrayList<Cereal> filterCarbsPerCup(int min, int max)
    {
-      //Add your solution to Question 1 here.
+      ArrayList<Cereal> result = new ArrayList<Cereal>();
+
+      for (Cereal c : cereals)
+      {
+         double servingsPerCup = 1 / c.getCups();
+         double carbsPerCup = c.getCarbs() * servingsPerCup;
+
+         if (carbsPerCup >= min && carbsPerCup <= max)
+         {
+            result.add(c);
+         }
+      }
+
+      return result;
    }
    
    /* Question 2: Write highestPercentFiber
@@ -34,7 +47,20 @@ public class CerealRunner
     
    public static Cereal highestPercentFiber()
    {
-      //Add your solution to Question 2 here.
+      Cereal best = cereals.get(0);
+
+      for (Cereal c : cereals)
+      {
+         double current = c.getFiber() / c.getCalories();
+         double bestVal = best.getFiber() / best.getCalories();
+
+         if (current > bestVal)
+         {
+            best = c;
+         }
+      }
+
+      return best;
    }
   
    
@@ -46,7 +72,12 @@ public class CerealRunner
     
    public static double findNetCarbsPerCup(Cereal c)
    {
-      //Add your solution to Question 3 here.
+      double servingsPerCup = 1 / c.getCups();
+
+      double carbsPerCup = c.getCarbs() * servingsPerCup;
+      double fiberPerCup = c.getFiber() * servingsPerCup;
+
+      return carbsPerCup - fiberPerCup;
    }
   
 
