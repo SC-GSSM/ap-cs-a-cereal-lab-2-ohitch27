@@ -3,7 +3,6 @@
 * Note: You will need to complete all questions 
 * before you can run this class. If you wish to test one part at a time,
 * please comment out the unfinished methods and the related tests 
-* 
 ************/
 
 import java.util.Scanner;
