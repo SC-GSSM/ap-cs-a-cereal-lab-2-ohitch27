@@ -117,37 +117,15 @@ public class CerealRunner
 
    public static void main(String [] args)
    {
-      String fileName= "src/data/cerealSubset.csv";
-      CerealRunner cr = new CerealRunner(fileName);
-      ArrayList<Cereal> results = filterCarbsPerCup(17, 18);
-      String names = "[";
-      for(Cereal c : results)
-         names += c.getName() + ", ";
-      if(names.length() > 2)
-         names = names.substring(0, names.length() - 2) + "]";
-      else
-         names += "]";
-
-       // These tests are not for grading! See src/test/java for those
-      //Test Question 1
-      System.out.println("\n*****Filter Carbs Per Cup Results*****");
-      System.out.println("Expected results: [Cinnamon Toast Crunch, Frosted "+
-      "Mini-Wheats, Fruit & Fibre Dates; Walnuts; and Oats, Fruity Pebbles, "+
-      "Grape Nuts Flakes, Just Right Crunchy  Nuggets, Life, Nutri-grain "+
-      "Wheat, Wheaties]");
-      System.out.println("\nActual results:   " + names);
-
-      //Test Part B
-      System.out.println("\n*****Highest Percent Fiber Results*****");
-      System.out.println("Expected results: All-Bran with Extra Fiber");
-      System.out.println("Actual results:   " + highestPercentFiber().getName());
-      
-
-      //Test Part C
-      System.out.println("\n*****Find Net Carbs Results*****");
-      Cereal testCereal = new Cereal("Golden Crisp",100,0,11,0.88);
-      System.out.println("Expected results: 11.0");
-      System.out.println("Actual results:   " + findNetCarbsPerCup(testCereal));
+      for(Cereal c: cereals) { 
+         if(c.getName().equals("All-Bran with Extra Fiber") ||   
+            c.getName().equals("Apple Jacks") ||  
+            c.getName().equals("Cocoa Puffs")) 
+         { 
+            System.out.println("\nCereal: " + c.getName() + ", NetCarbs: "    
+                                 + findNetCarbs(c)); 
+         } 
+      }
       
    }
 }
