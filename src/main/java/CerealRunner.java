@@ -3,7 +3,8 @@
 * Note: You will need to complete all questions 
 * before you can run this class. If you wish to test one part at a time,
 * please comment out the unfinished methods and the related tests 
-*************/
+* 
+************/
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -116,16 +117,54 @@ public class CerealRunner
 
    public static void main(String [] args)
    {
+      String fileName= "src/data/cerealSubset.csv";
+      CerealRunner cr = new CerealRunner(fileName);
+      ArrayList<Cereal> results = filterCarbsPerCup(17, 18);
+      String names = "[";
+      for(Cereal c : results)
+         names += c.getName() + ", ";
+      if(names.length() > 2)
+         names = names.substring(0, names.length() - 2) + "]";
+      else
+         names += "]";
+
+       // These tests are not for grading! See src/test/java for those
+      //Test Question 1
+      System.out.println("\n*****Filter Carbs Per Cup Results*****");
+      System.out.println("Expected results: [Cinnamon Toast Crunch, Frosted "+
+      "Mini-Wheats, Fruit & Fibre Dates; Walnuts; and Oats, Fruity Pebbles, "+
+      "Grape Nuts Flakes, Just Right Crunchy  Nuggets, Life, Nutri-grain "+
+      "Wheat, Wheaties]");
+      System.out.println("\nActual results:   " + names);
+
+      //Test Part B
+      System.out.println("\n*****Highest Percent Fiber Results*****");
+      System.out.println("Expected results: All-Bran with Extra Fiber");
+      System.out.println("Actual results:   " + highestPercentFiber().getName());
+      
+
+      //Test Part C
+      System.out.println("\n*****Find Net Carbs Results*****");
+      Cereal testCereal = new Cereal("Golden Crisp",100,0,11,0.88);
+      System.out.println("Expected results: 11.0");
+      System.out.println("Actual results:   " + findNetCarbsPerCup(testCereal));
+
       for(Cereal c: cereals) { 
          if(c.getName().equals("All-Bran with Extra Fiber") ||   
             c.getName().equals("Apple Jacks") ||  
             c.getName().equals("Cocoa Puffs")) 
          { 
             System.out.println("\nCereal: " + c.getName() + ", NetCarbs: "    
-                                 + findNetCarbs(c)); 
+                                 + findNetCarbsPerCup(c)); 
          } 
       }
+
+      /* Question 4 Answer
+      One of the cereals has an unusual net carb value compared to the others. 
+      This suggests that there may be incorrect or inconsistent data in the dataset, 
+      such as an unusually high fiber value or incorrect carbohydrate value. 
+      This shows the importance of validating data before using it.
+      */
       
    }
 }
-
